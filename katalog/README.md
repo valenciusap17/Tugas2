@@ -1,5 +1,7 @@
 # Tugas 2 PBP #
 
+Situs hero ku dapat diakses di [sini](https://tugas2pbp-valencius.herokuapp.com/katalog/)
+
 ## Bagan Request Client ke Web Aplikasi Berbasis Django ##
 
 ![pbp](https://user-images.githubusercontent.com/112455892/190127974-7b02e92f-62e2-4ed2-b909-6bd2c194b01e.jpg)
@@ -10,7 +12,7 @@ Fungsi dari virtual environment adalah agar kita dapat mengerjakan suatu project
 
 Jika kita tidak menggunakan virtual environment kita memang masih dapat membuat aplikasi web berbasis Django, tetapi hal tersebut sangat rawan untuk mengakibatkan kekacauan jika kita sedang mengerjakan beberapa project yang membutuhkan pengaturan dan package yang berbeda sehingga kita tidak disarankan untuk tidak menggunakan virtual environment ketika kita sedang membuat aplikasi berbasis web.
 
-## Cara Pengimplementasian##
+## Cara Pengimplementasian ##
 ### Langkah 1: ###
 Implemetasi kode:
 ```

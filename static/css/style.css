@@ -1,0 +1,19 @@
+h1 {
+    color: black;
+}
+
+body {
+    background: white url("images/background.png") no-repeat;
+}
+
+table tr th{
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+    margin-bottom: 2;
+    border-style: solid;
+    border-width: 1px;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}

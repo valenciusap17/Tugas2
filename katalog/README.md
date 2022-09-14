@@ -1,6 +1,6 @@
 # Tugas 2 PBP #
 
-Situs hero ku dapat diakses di [sini](https://tugas2pbp-valencius.herokuapp.com/katalog/)
+Situs heroku dapat diakses di [sini](https://tugas2pbp-valencius.herokuapp.com/katalog/)
 
 ## Bagan Request Client ke Web Aplikasi Berbasis Django ##
 

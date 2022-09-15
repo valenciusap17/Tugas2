@@ -66,7 +66,7 @@ Pada file template html yang sudah ada, kita perlu memanfaatkan penggunaan doubl
 ```
   <p>{{ namaku }} </p>
 ```
-Kode di atas akan mengembalikan value dari variabel python ``` namaku ``` yaitu "Valencius APriady Primayudha. ```namaku``` sendiri berasal dari properties yang dibuat pada context yang digabung dengan file .html pada saat kita menggunakan melaksanaan function render di views.py.
+Kode di atas akan mengembalikan value dari variabel python ``` namaku ``` yaitu "Valencius Apriady Primayudha. ```namaku``` sendiri berasal dari properties yang dibuat pada context yang digabung dengan file .html pada saat kita menggunakan melaksanaan function render di views.py.
 
 ### Langkah 4: ###
 Untuk melakukan deploy pada aplikasi heroku, kita memerlukan file ```Procfile```, file ```dpl.yml```, dan menambahkan ```HEROKU_API_KEY``` dan ```HEROKU_APP_NAME``` pada secrets repository github.

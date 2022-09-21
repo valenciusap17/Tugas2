@@ -15,5 +15,5 @@ table{
 }
 
 table, tr:nth-child(1){
-    column-width: 4000px;
+    column-width: 400px;
 }

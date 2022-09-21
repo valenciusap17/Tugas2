@@ -1,0 +1,112 @@
+[
+    {
+        "model": "mywatchlist.listoffilm",
+        "pk": 1,
+        "fields": {
+            "watched": true,
+            "title": "How to Train Your Dragon",
+            "rating": 5.00,
+            "release_date": "2010-03-20",
+            "review": "The story is so-so, but the animation is delicious."
+        }
+    },
+    {
+        "model": "mywatchlist.listoffilm",
+        "pk": 2,
+        "fields": {
+            "watched": false,
+            "title": "Mencuri Raden Saleh",
+            "rating": 4.5,
+            "release_date": "2022-08-25",
+            "review": "Exceeds my expectation!"
+        }
+    },
+    {
+        "model": "mywatchlist.listoffilm",
+        "pk": 3,
+        "fields": {
+            "watched": true,
+            "title": "Top Gun: Maverick",
+            "rating": 4.7,
+            "release_date": "2022-05-27",
+            "review": "Tom Cruise is here to save cinema."
+        }
+    },
+    {
+        "model": "mywatchlist.listoffilm",
+        "pk": 4,
+        "fields": {
+            "watched": true,
+            "title": "Ready Player One",
+            "rating": 5,
+            "release_date": "2018-03-28",
+            "review": "It's pure entertainment, and gives Spielberg an easel to prop his sentimental painting on, and all the colors on his palette to do so."
+        }
+    },
+    {
+        "model": "mywatchlist.listoffilm",
+        "pk": 5,
+        "fields": {
+            "watched": true,
+            "title": "Thor: Love and Thunder",
+            "rating": 3.2,
+            "release_date": "2022-07-06",
+            "review": "The film passes through the nervous system without delivering any sustenance or even leaving a residue."
+        }
+    },
+    {
+        "model": "mywatchlist.listoffilm",
+        "pk": 6,
+        "fields": {
+            "watched": false,
+            "title": "La La Land",
+            "rating": 4.2,
+            "release_date": "2016-12-9",
+            "review": "The movie has charm, at least, if nothing else. And as an attempt to pay homage to a vanishing world, La La Land is as dutiful as it is endearing - sweet, if a little sour, too."
+        }
+    },
+    {
+        "model": "mywatchlist.listoffilm",
+        "pk": 7,
+        "fields": {
+            "watched": false,
+            "title": "Drifting Home",
+            "rating": 4.4,
+            "release_date": "2022-09-16",
+            "review": "There's enough liveliness to Drifting Home that two hours in a single location against a minimal background doesn't actually feel like overkill."
+        }
+    },
+    {
+        "model": "mywatchlist.listoffilm",
+        "pk": 8,
+        "fields": {
+            "watched": true,
+            "title": "Jumanji: The Next Level",
+            "rating": 4.5,
+            "release_date": "2022-12-04",
+            "review": "It's funny and diverting and it's even found accommodation for the elderly. Thoughtful, that, in a family film."
+        }
+    },
+    {
+        "model": "mywatchlist.listoffilm",
+        "pk": 9,
+        "fields": {
+            "watched": false,
+            "title": "Hatching",
+            "rating": 3.2,
+            "release_date": "2022-06-29",
+            "review": "This artful combination of horror film and pubescent trauma is distinguished by its insights into the world of its young teen heroine."
+        }
+    },
+    {
+        "model": "mywatchlist.listoffilm",
+        "pk": 10,
+        "fields": {
+            "watched": true,
+            "title": "Cruella",
+            "rating": 3.6,
+            "release_date": "2021-05-26",
+            "review": "Cruella is doing enough to be seductively fun and entertaining, at least for the first 90 minutes."
+        }
+    }
+]

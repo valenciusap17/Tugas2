@@ -4,28 +4,28 @@ from django.http import HttpResponse
 from django.core import serializers
 
 # Create your views here.
+data_film = MyWatchList.objects.all()
 def show_my_watch_list(request):
+    have_watched = 0
+    not_watch = 0
+    for iterasi in data_film:
+        if iterasi.watched:
+            have_watched += 1
+        else:
+            not_watch+= 1
+    if have_watched >= not_watch:
+        extra_msg = "Selamat, kamu sudah banyak menonton!"
+    else:
+        extra_msg = "Wah, kamu masih sedikit menonton!"
+        
+    context = {
+        'message': extra_msg,
+        'list_film': data_film,
+        'namaku': 'Valencius Apriady Primayudha',
+        'idku': '2106750830',
+    }
     return render(request, "mywatchlist.html", context)
 
-data_film = MyWatchList.objects.all()
-have_watched = 0
-not_watch = 0
-for iterasi in data_film:
-    if iterasi.watched:
-        have_watched += 1
-    else:
-        not_watch+= 1
-if have_watched >= not_watch:
-    extra_msg = "Selamat, kamu sudah banyak menonton!"
-else:
-    extra_msg = "Wah, kamu masih sedikit menonton!"
-    
-context = {
-    'message': extra_msg,
-    'list_film': data_film,
-    'namaku': 'Valencius Apriady Primayudha',
-    'idku': '2106750830',
-}
 
 def show_xml(request):
     data = MyWatchList.objects.all()

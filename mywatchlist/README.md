@@ -1,5 +1,7 @@
 # Tugas 3 PBP # 
 
+Link heroku dapat diakses di [sini](https://tugas2pbp-valencius.herokuapp.com/mywatchlist/)
+
 ## Perbedaan JSON, XML, dan HTML ##
 
 Pada dasarnya, JSON dan XML memiliki kegunaan yang sama, hanya saja terdapat beberapa perbedaan yang membedakan keduanya. Dari segi cara penyimpanan data, JSON lebih efisien walaupun menghasilkan data yang kurang enak dilihat secara visual, sedangkan XML dapat menyusun data yang lebih terstruktur tetapi kurang efisien. Ekstensi file yang dimiliki oleh XML adalah .xml, sedangkan ekstensi file yang dimiliki oleh JSON adalah .json. JSON digunakan untuk mengirimkan data yang diuraikan terlebih dahulu dan mengirimkannya melalui internet, sementara XML cenderung dimanfaatkan kerapihan datanya untuk membuat catatan. HTML lebih sering dimanfaatkan utnuk menyajikan data.

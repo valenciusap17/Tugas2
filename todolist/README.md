@@ -1,5 +1,15 @@
 # Tugas 4 PBP #
 
+Link heroku dapat diakses [disini](https://tugas2pbp-valencius.herokuapp.com/todolist/)
+
+2 Akun pengguna yang sudah dibuat:
+
+1.  Username: dummy1
+    Password: tesbenar
+
+2.  Username: dummy2
+    Password: tesbenar
+
 ## Kegunaan ```{% csrf_token %}``` pada elemen ```<form>``` dan apa yang terjadi jika kita tidak memakainya ##
 
 CSRF adalah singkatan dari Cross-site Request Forgery yang merupakan kerentanan sekuritas website yang dapat mengizinkan orang lain untuk memanipulasi pengguna untuk melakukan tindakan yang sebenarnya tidak mereka lakukan. 

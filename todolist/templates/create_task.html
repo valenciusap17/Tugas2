@@ -1,19 +1,17 @@
 <html>
 <head>
-<title>Create a Post </title>
+<title>Create Task</title>
 </head>
 
 <body>
-<h1>Create a Post </h1>
+<h1>Create Your new Task </h1>
 <form action="" method="POST">
 {% csrf_token %}
-User: <input type="text" name="user"/><br/>
-Date: <input type="date" name="date"/><br/>
-Title: <input type="text" name="title"/><br/>
-Description: <br/>
-<textarea cols="35" rows="8" name="description">
+Title Task: <input type="text" name="task"/><br/>
+Description Content: <br/>
+<textarea cols="35" rows="8" name="desc">
 </textarea><br/>
-<input type="submit" value="Post"/>
+<input type="submit" value="Create new Task"/>
 </form>
 </body>
 

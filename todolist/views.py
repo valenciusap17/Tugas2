@@ -1,4 +1,6 @@
 from multiprocessing import context
+from time import time, timezone
+from urllib import response
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.auth.forms import UserCreationForm
@@ -10,34 +12,33 @@ from todolist.models import Task
 import datetime
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.utils import timezone
 from django.contrib.auth.models import User
 # Create your views here.
 
 @login_required(login_url='/todolist/login/')
 def show_todolist(request):
-    data_task = Task.objects.all()
+    data_task = Task.objects.filter(user=request.user)
     context = {
         'list_task': data_task,
-        'nama': request.COOKIES['username'],
+        'nama': request.user,
         'last_login': request.COOKIES['last_login'],
         
     }
     return render(request, 'todolist.html', context)
 
+@login_required(login_url='/todolist/login/')
 def create_task(request):
     if request.method == 'POST':
-        if request.POST.get('user') and request.POST.get('date') and request.POST.get('title') and request.POST.get('description'):
-            post = Task()
-            post.user = request.POST.get('user')
-            post.date = request.POST.get('date')
-            post.title = request.POST.get('title')
-            post.description = request.POST.get('description')
-            post.save()
+        Task.objects.create(
+            user = request.user, 
+            date = timezone.now(), 
+            title = request.POST.get("task"), 
+            description = request.POST.get("desc"),
+        )
+        return HttpResponseRedirect(reverse('todolist:show_todolist'))
 
-            return render(request, 'todolist/create_task.html')
-
-        else:
-            return render(request, 'todolist/create_task.html')
+    return render(request, 'create_task.html', {})
 
 
 def register(request):
@@ -59,10 +60,9 @@ def login_user(request):
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
         if user is not None:
-            login(request, user) # melakukan login terlebih dahulu
-            response = HttpResponseRedirect(reverse("todolist:show_todolist")) # membuat response
-            response.set_cookie('last_login', str(datetime.datetime.now())) # membuat cookie last_login dan menambahkannya ke dalam response
-            response.set_cookie('username', username)
+            login(request, user) 
+            response = HttpResponseRedirect(reverse("todolist:show_todolist")) 
+            response.set_cookie('last_login', str(datetime.datetime.now())) 
             return response
         else:
             messages.info(request, 'Username atau Password salah!')
@@ -74,3 +74,16 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('todolist:login'))
     response.delete_cookie('last_login')
     return response 
+
+@login_required(login_url='/todolist/login/')
+def deleting_task(request, id):
+    stuff = Task.objects.get(user=request.user, id = id)
+    stuff.delete()
+    return redirect('todolist:show_todolist')
+
+@login_required(login_url='/todolist/login/')
+def converting_status(request, id):
+    stuff = Task.objects.get(user=request.user, id = id)
+    stuff.is_finished = not stuff.is_finished
+    stuff.save(update_fields=["is_finished"])
+    return redirect('todolist:show_todolist')

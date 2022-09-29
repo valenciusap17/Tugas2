@@ -18,21 +18,14 @@
       <th>Task Check</th>
       <th>Delete Task</th>
     </tr>
-    {% comment %} Add the data below this line {% endcomment %}
     {% for task in list_task %}
       <tr>
         <th>{{task.title}}</th>
         <th>{{task.date}}</th>
         <th>{{task.description}}</th>
-        <th>{{task.is_finished}}</th>
+        {% if task.is_finished %} <th>Selesai</th> {% else %} <th>Belum Selesai</th> {% endif %}
         <th>
-          <input 
-            type="checkbox" 
-            name="task_status" 
-            id="task_status" 
-            {% if task.is_finished %} checked {% endif %}   
-            onchange="location.href='{% url 'todolist:converting_status' task.id %}'"
-          />
+            <button><a href="{% url 'todolist:converting_status' task.id %}"title="">Done</a></button>
         </th>
         <th><button><a href="{% url 'todolist:deleting_task' task.id %}"title="">Delete</a></button></th>
       </tr>

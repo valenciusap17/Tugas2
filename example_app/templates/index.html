@@ -6,6 +6,10 @@
 {% endblock meta %}
 
 {% block content %}
-  <h1>Hello, world!</h1>
-  <h3>This is example app for Django template</h3>
+  <h1>Hello, everyone!</h1>
+  <h2>This is example app of Valencius's Django template</h2>
+  <h3>To access other applications you may choose: </h3>
+  <a href="{% url 'katalog:show_katalog' %}">Katalog</a>
+  <a href="{% url 'mywatchlist:show_my_watch_list' %}">MyWatchList</a>
+  <a href="{% url 'todolist:show_todolist' %}">Todolist</a>
 {% endblock content %}

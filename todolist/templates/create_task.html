@@ -9,35 +9,40 @@
     .flex-first {
       font-size: 250%;
     }
+    .box{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
   </style>
-
+<section class="vh-100" style="background-color: #e2d5de;">
 <html>
 <head>
-    <h2 class="text-center name"><div class="flex-first">Create Your New Task</div></h2>
 </head>
-
-<body>
-    <div class="container mt-3">
-        <div class="row d-flex justify-content-center">
-            <div class="col-md-4">
-                <div class="card px-5 py-5" id="form1">
-                    <div class="form-data" v-if="!submitted">
-                        <form action="" method="POST">
-                        {% csrf_token %}
-                        Title Task: <input type="text" name="task" placeholder="New Task"/><br/>
-                        Description Content: <br/>
-                        <textarea cols="35" rows="8" name="desc" >
-                        </textarea><br/>
-                        <td><div class="mb-3"> <button v-on:click.stop.prevent="submit" value="Create new Task" class="btn btn-dark w-50">Submit</button> </div></td>
-
-                        </form>
+    <body>
+        <section class="vh-100" style="background-color: #e2d5de;">
+        <div class="box">
+            <div class="container mt-3">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-6">
+                        <div class="card px-5 py-5" id="form1">
+                            <div class="form-data" v-if="!submitted">
+                                
+                                <form action="" method="POST" >
+                                    <h5 class="text-center name"><div class="flex-first">Create Your New Task</div></h>                                
+                                {% csrf_token %}
+                                Title Task: <br/><input type="text" name="task" /><br/>
+                                Description Content: <br/>
+                                <textarea cols="35" rows="4" name="desc" ></textarea><br/>
+                                <td><div class="mb-3"> <button v-on:click.stop.prevent="submit" value="Create new Task" class="btn btn-dark w-50">Submit</button> </div></td>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</body>
-
+        </section>
+    </body>
 </html>
 
 

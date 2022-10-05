@@ -15,15 +15,15 @@
 
 <nav class="navbar bg-light">
     <div class="container-fluid">
-      <span class="navbar-brand mb-0 h1">Welcome!</span>
+      <span class="navbar-brand mb-0 h1">Welcome New User!</span>
     </div>
   </nav>
 
-<h1 class="text-center name"><div class="flex-first">Login</div></h1>
+<h1 class="text-center name"><div class="flex-first">Login To Access Your ToDoList!</div></h1>
 
 <div class="container mt-3">
     <div class="row d-flex justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-3">
             <div class="card px-5 py-5" id="form1">
                 <div class="form-data" v-if="!submitted">
 
@@ -31,12 +31,12 @@
                         {% csrf_token %}
                         <table>
                             <tr>
-                                <div class="forms-inputs mb-4"> <span>Email or username</span> <input autocomplete="off" name="username" placeholder="Username" type="text" v-model="email" v-bind:class="{'form-control':true, 'is-invalid' : !validEmail(email) && emailBlured}" v-on:blur="emailBlured = true">
+                                <div class="forms-inputs mb-4"><input autocomplete="off" name="username" placeholder="Username" type="text" v-model="email" v-bind:class="{'form-control':true, 'is-invalid' : !validEmail(email) && emailBlured}" v-on:blur="emailBlured = true">
                                 
                             </tr>
                                     
                             <tr>
-                                <div class="forms-inputs mb-4"> <span>Password</span> <input autocomplete="off" name="password" placeholder="Password" type="password" v-model="password" v-bind:class="{'form-control':true, 'is-invalid' : !validPassword(password) && passwordBlured}" v-on:blur="passwordBlured = true">
+                                <div class="forms-inputs mb-4"><input autocomplete="off" name="password" placeholder="Password" type="password" v-model="password" v-bind:class="{'form-control':true, 'is-invalid' : !validPassword(password) && passwordBlured}" v-on:blur="passwordBlured = true">
                             </tr>
 
                             <tr>
@@ -53,7 +53,7 @@
                         </ul>
                     {% endif %}     
         
-                    Belum mempunyai akun? Click -> <a href="{% url 'todolist:register' %}">Buat Akun</a>
+                    Belum mempunyai akun?<br/> Click -> <a href="{% url 'todolist:register' %}">Buat Akun</a>
                 </div>
             </div>
         </div>

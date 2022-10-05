@@ -1,45 +1,68 @@
 {% extends 'base.html' %}
 
+
 {% block meta %}
-<title>Login</title>
+
 {% endblock meta %}
 
 {% block content %}
 
-<div class = "login">
+<style>
+    .flex-first {
+      font-size: 250%;
+    }
+  </style>
 
-    <h1>Login</h1>
+<nav class="navbar bg-light">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">Welcome!</span>
+    </div>
+  </nav>
 
-    <form method="POST" action="" ALIGN='center'>
-        {% csrf_token %}
-        <table>
-            <tr>
-                <td>Username: </td>
-                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
-            </tr>
-                    
-            <tr>
-                <td>Password: </td>
-                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
-            </tr>
+<h1 class="text-center name"><div class="flex-first">Login</div></h1>
 
-            <tr>
-                <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
-            </tr>
-        </table>
-    </form>
+<div class="container mt-3">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+            <div class="card px-5 py-5" id="form1">
+                <div class="form-data" v-if="!submitted">
 
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}     
+                    <form method="POST" action="" ALIGN='center'>
+                        {% csrf_token %}
+                        <table>
+                            <tr>
+                                <div class="forms-inputs mb-4"> <span>Email or username</span> <input autocomplete="off" name="username" placeholder="Username" type="text" v-model="email" v-bind:class="{'form-control':true, 'is-invalid' : !validEmail(email) && emailBlured}" v-on:blur="emailBlured = true">
+                                
+                            </tr>
+                                    
+                            <tr>
+                                <div class="forms-inputs mb-4"> <span>Password</span> <input autocomplete="off" name="password" placeholder="Password" type="password" v-model="password" v-bind:class="{'form-control':true, 'is-invalid' : !validPassword(password) && passwordBlured}" v-on:blur="passwordBlured = true">
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                                <div class="mb-3"> <button v-on:click.stop.prevent="submit" value="Login" class="btn btn-dark w-100">Login</button> </div>
+                            </tr>
+                        </table>
+                    </form>
+                    {% if messages %}
+                        <ul>
+                            {% for message in messages %}
+                                <li>&#10060; {{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}     
         
-    Belum mempunyai akun? <a href="{% url 'todolist:register' %}">Buat Akun</a>
+                    Belum mempunyai akun? Click -> <a href="{% url 'todolist:register' %}">Buat Akun</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
 
 </div>
+
+
 
 {% endblock content %}

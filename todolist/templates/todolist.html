@@ -1,39 +1,80 @@
 {% extends 'base.html' %}
 
  {% block content %}
-
  {% load static %}
 
-  <h1>Tugas 4 Assignment PBP/PBD</h1>
+ <nav class="navbar bg-light">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1"><b>Welcome!</b><img src="{% static 'todolist/images/user1.jpg' %}" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+      {{nama}}</span>
+    <button class="btn btn-outline-success me-2" type="button"><a href="{% url 'todolist:logout' %}">Logout</a>
+    </button>
+  </div>
 
-  <span><h5></h5><b>Name: </b>{{nama}} </span>
-  <p></p>
+</nav>
 
-  <table>
-    <tr>
-      <th>Task Title</th>
-      <th>Task Date</th>
-      <th>Task Description</th>
-      <th>Task Status</th>
-      <th>Task Check</th>
-      <th>Delete Task</th>
-    </tr>
-    {% for task in list_task %}
-      <tr>
-        <th>{{task.title}}</th>
-        <th>{{task.date}}</th>
-        <th>{{task.description}}</th>
-        {% if task.is_finished %} <th>Selesai</th> {% else %} <th>Belum Selesai</th> {% endif %}
-        <th>
-            <button><a href="{% url 'todolist:converting_status' task.id %}"title="">Done</a></button>
-        </th>
-        <th><button><a href="{% url 'todolist:deleting_task' task.id %}"title="">Delete</a></button></th>
-      </tr>
-    {% endfor %}
-  </table>
-  <h5>Sesi terakhir login: {{ last_login }}</h5>
-  <button><a href="{% url 'todolist:create_task' %}">Create Task</a></button>
+ <div class="d-flex justify-content-center">
+    <div class="h2  ">
+  <h1>To Do List</h1>
+    </div>
+</div>
+  <style>
+    .flex-first {
+      display: flex;
+      justify-content: center;
+      margin: 10px;
+    }
+    .flex-second {
+      display: flex;
+      justify-content: center;
+      margin: 25px; 
+    }
+    .flex-third {
+      display: flex;
+      flex-direction: row;
+      align-self: flex-end;
+      justify-content: flex-start;
+    }
+  </style>
+  
+    
+    <tbody >
+      {% for task in list_task %}
+        <tr>
+          <div class="flex-first">
+            <div class="p-6 max-w-sm bg-white rounded-lg border border-gray-800 shadow-md dark:bg-gray-800 dark:border-gray-700 card text-center">
+                <div class="flex-first">
+                  <h1 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{task.title}}</h1>
+                  {% if task.is_finished %} <h1>&#9989;</h1> {% else %} <h1>&#10060;</h1> {% endif %}
+                </div>
+              
+              
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{task.description}}</p>
+                <h6>{{task.date}}</h6>
+                <span>
+                <a href="{% url 'todolist:converting_status' task.id %}" class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Done/Undone Check
+                    <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </a>
+                <a href="{% url 'todolist:deleting_task' task.id %}" class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                  Delete
+                  <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </a>
+            </div>
+          </div>
+        </tr>
+      {% endfor %}
+    </tbody>  
 
-  <button><a href="{% url 'todolist:logout' %}">Logout</a></button>
+<div class="flex-second">
+  <h3>Sesi terakhir login: {{ last_login }}</h3>
+</div>
+<div class="flex-second">
+  <div class="flex-third">
+    <button><a href="{% url 'todolist:create_task' %}"class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create Task</a></button>
+    <button><a href="{% url 'todolist:logout' %}"class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Logout</a></button>
+  </div>
+</div>
+
 
  {% endblock content %}

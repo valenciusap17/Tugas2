@@ -8,12 +8,14 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+import todolist
 from todolist.models import Task
 import datetime
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.core import serializers
 # Create your views here.
 
 @login_required(login_url='/todolist/login/')
@@ -26,6 +28,11 @@ def show_todolist(request):
         
     }
     return render(request, 'todolist.html', context)
+
+
+def get_todolist_json(request):
+    data = Task.objects.all()
+    return HttpResponse(serializers.serialize("json", data))
 
 @login_required(login_url='/todolist/login/')
 def create_task(request):
@@ -40,6 +47,18 @@ def create_task(request):
 
     return render(request, 'create_task.html', {})
 
+
+def add_todolist_item(request):
+    if request.method == 'POST':
+        title = request.POST.get("title")
+        description = request.POST.get("description")
+
+        new_barang = Task(user=request.user, date=timezone.now(), title=title, description=description, is_finished=False)
+        new_barang.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()
 
 def register(request):
     form = UserCreationForm()
@@ -83,7 +102,7 @@ def deleting_task(request, id):
 
 @login_required(login_url='/todolist/login/')
 def converting_status(request, id):
-    stuff = Task.objects.get(user=request.user, id = id)
+    stuff = Task.objects.get(user=request.user, id = id)    
     stuff.is_finished = not stuff.is_finished
     stuff.save(update_fields=["is_finished"])
     return redirect('todolist:show_todolist')

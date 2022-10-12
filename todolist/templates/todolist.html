@@ -10,75 +10,126 @@
     <button class="btn btn-outline-success me-2" type="button"><a href="{% url 'todolist:logout' %}">Logout</a>
     </button>
   </div>
-
 </nav>
- <div class="d-flex justify-content-center">
+
+<div class="d-flex justify-content-center">
     <div class="h2">
-  <h1>To Do List</h1>
+      <h1>To Do List</h1>
     </div>
 </div>
-  <style>
-    .flex-first {
-      display: flex;
-      justify-content: center;
-      margin: 10px;
-    }
-    .flex-second {
-      display: flex;
-      justify-content: center;
-      margin: 25px; 
-    }
-    .flex-third {
-      display: flex;
-      flex-direction: row;
-      align-self: flex-end;
-      justify-content: flex-start;
-    }
-    .cards:hover{
-      box-shadow: 5px 6px 6px 2px #e9ecef;
-      transform: scale(1.1);
-    }
-  </style>
-  
-  
-    <tbody >
-      {% for task in list_task %}
-        <tr>
-          <div class="flex-first">
-            <div class="cards">
-              <div class="p-6 max-w-sm bg-white rounded-lg border border-gray-800 shadow-md dark:bg-gray-800 dark:border-gray-700 card text-center">
-                  <div class="flex-first">
-                    <h1 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{task.title}}</h1>
-                    {% if task.is_finished %} <h1>&#9989;</h1> {% else %} <h1>&#10060;</h1> {% endif %}
-                  </div>
-                
-                
-                  <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{task.description}}</p>
-                  <h6>{{task.date}}</h6>
-                  <span>
-                  <a href="{% url 'todolist:converting_status' task.id %}" class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                      Done/Undone Check
-                      <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                  </a>
-                  <a href="{% url 'todolist:deleting_task' task.id %}" class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    Delete
-                    <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                  </a>
-              </div>
-            </div>
+<style>
+  .flex-first {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+  }
+  .flex-second {
+    display: flex;
+    justify-content: center;
+    margin: 25px; 
+  }
+  .flex-third {
+    display: flex;
+    flex-direction: row;
+    align-self: flex-end;
+    justify-content: flex-start;
+  }
+  .cards:hover{
+    box-shadow: 5px 6px 6px 2px #e9ecef;
+    transform: scale(1.1);
+  }
+</style>
+<div class="flex-second">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Create Task</button>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Create Your New Task</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formnewtask">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Title</label>
+            <input type="text" class="form-control" id="title" name ="title">
           </div>
-        </tr>
-      {% endfor %}
-    </tbody>  
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Description</label>
+            <textarea class="form-control" id="description" name="description"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="taskbutton"  data-bs-dismiss="modal">Save New Task</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mx-auto mt-4">
+  <div class="row" id="containCards">
+
+  </div>
+</div>
+
 <div class="flex-second">
   <h3>Sesi terakhir login: {{ last_login }}</h3>
 </div>
 <div class="flex-second">
   <div class="flex-third">
-    <button><a href="{% url 'todolist:create_task' %}"class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create Task</a></button>
     <button><a href="{% url 'todolist:logout' %}"class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Logout</a></button>
   </div>
 </div>
 
+<script>
+  $(document).ready(function(){
+    refreshTodolist();
+  });
+
+  async function getTodolist() {
+    return fetch("{% url 'todolist:get_todolist_json' %}").then((res) => res.json())
+  }
+
+  async function refreshTodolist() {
+        document.getElementById("containCards").innerHTML = ""
+        const todolist = await getTodolist()
+        let htmlString = ``
+        todolist.forEach((item) => {
+          htmlString += `\n
+          <tr>
+            <div class="flex-first">
+              <div class="cards">
+                <div class="p-6 max-w-sm bg-white rounded-lg border border-gray-800 shadow-md dark:bg-gray-800 dark:border-gray-700 card text-center">
+                    <div class="flex-first">
+                      <h1 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">${item.fields.title}</h1>
+                      {% if task.is_finished %} <h1>&#9989;</h1> {% else %} <h1>&#10060;</h1> {% endif %}
+                    </div>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">${item.fields.description}</p>
+                    <h6>${item.fields.date}</h6>
+                </div>
+              </div>
+            </div>
+          </tr>
+          ` 
+        })
+        
+        document.getElementById("containCards").innerHTML = htmlString
+  }
+
+  function addTodolist() {
+    fetch("{% url 'todolist:add_todolist_item' %}", {
+          method: "POST",
+          body: new FormData(document.querySelector('#formnewtask'))
+      }).then(refreshTodolist)
+    return false
+  }
+  document.getElementById("taskbutton").onclick = addTodolist
+  refreshTodolist()
+</script>
 
  {% endblock content %}

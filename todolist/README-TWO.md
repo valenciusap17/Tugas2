@@ -28,7 +28,7 @@ def get_todolist_json(request):
 ...
 ```
 
-Setelah kita menampilkan data dalam bentuk json maka sekarang kita mulai mengimplementasikan AJAX yang kita inginkan. kita membuat tag script yang isinya berfungsi untuk melakukan import jquery AJAX. 
+Setelah kita menampilkan data dalam bentuk json maka sekarang kita mulai mengimplementasikan AJAX yang kita inginkan. kita membuat tag script yang isinya berfungsi untuk melakukan implementasi AJAX yang kita inginkan. 
 
 Pertama-tama saya membuat sebuah container kosong yang nantinya akan diisi oleh konten todolist sama seperti tugas pekan lalu. Impemetasi kode sebagai berikut:
 ```

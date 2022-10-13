@@ -48,7 +48,7 @@ def create_task(request):
     return render(request, 'create_task.html', {})
 
 
-def add_todolist_item(request):
+def add_item_todolist(request):
     if request.method == 'POST':
         title = request.POST.get("title")
         description = request.POST.get("description")

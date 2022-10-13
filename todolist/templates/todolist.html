@@ -122,7 +122,7 @@
   }
 
   function addTodolist() {
-    fetch("{% url 'todolist:add_todolist_item' %}", {
+    fetch("{% url 'todolist:add_item_todolist' %}", {
           method: "POST",
           body: new FormData(document.querySelector('#formnewtask'))
       }).then(refreshTodolist)
